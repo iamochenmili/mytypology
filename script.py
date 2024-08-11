@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-# Данные о количестве людей для каждого типа
+# Здесь вы можете менять данные
 data = {
     'ИЛЭ': 25,
     'СЭИ': 30,
@@ -35,5 +35,3 @@ plt.tight_layout()
 # Сохранение диаграммы как изображения
 image_path = 'sociotype_chart.png'
 plt.savefig(image_path)
-
-print("Диаграмма успешно создана и сохранена в файл sociotype_chart.png!")
