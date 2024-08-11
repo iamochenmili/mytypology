@@ -1,32 +1,35 @@
-name: Generate Sociotype Chart
+name: Generate Chart
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
+
   generate_chart:
     runs-on: ubuntu-latest
+    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
+    - uses: actions/checkout@v2
+    
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.x
-
+        python-version: 3.9
+        
     - name: Install dependencies
-      run: pip install matplotlib
-
-    - name: Run script to generate image
-      run: python script.py
-
-    - name: Commit and push generated image
       run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
+        python -m pip install --upgrade pip
+        pip install matplotlib
+        
+    - name: Generate chart
+      run: |
+        python script.py
+        
+    - name: Commit and push chart
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
         git add sociotype_chart.png
-        git commit -m "Автоматически сгенерированное изображение диаграммы"
-        git push origin main
+        git commit -m "Update chart"
+        git push
